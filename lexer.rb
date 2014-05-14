@@ -89,6 +89,13 @@ expected less than #{current_indent}"
 
       i += @m && !@m.empty? ? @m.size : 1
     end
+
+    # Close open blocks
+    while indent = indent_stack.pop
+      tokens.push [:DEDENT, indent_stack.first || 0]
+    end
+
+    tokens
   end
 
   private
