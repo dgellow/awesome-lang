@@ -53,12 +53,13 @@ class Lexer
         i += 2
       elsif n(indent_regexp) && @matcher.size > 1
         indent = @matcher[2]
+
         if (indent.size % INDENT_SIZE) != 0
           fail error i, "Bad indent size, got #{indent.size} indents, \
 expected a multiple of #{INDENT_SIZE}"
         elsif indent.size <= current_indent
           fail error i, "Bad indent level, got #{indent.size} indents, \
-expected less than #{current_indent}"
+expected more than #{current_indent}"
         end
 
         current_indent = indent.size
