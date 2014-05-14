@@ -34,6 +34,8 @@ class Lexer
     # option m: multi-line mode
     indent_regexp = /\A\:( *)\n( +)/m
     dedent_regexp = /\A *\n( +)/m
+    operator_regexp = /\A(\|\||&&|==|!=|<=|>=)/
+    singlechar_regexp = /\A([^ \n\t\r])/
 
     i = 0
     while i < @code.size
@@ -83,6 +85,10 @@ expected less than #{current_indent}"
         end
         # Skip `\n`
         i += 1
+      elsif n(operator_regexp)
+        @tokens.push [@m.to_sym, @m]
+      elsif n(singlechar_regexp)
+        @tokens.push [@m.to_sym, @m]
       end
 
       i += @m && !@m.empty? ? @m.size : 1
