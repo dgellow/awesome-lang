@@ -4,7 +4,7 @@
 # Date: May 2014
 
 class Lexer
-  attr_accessor :tokens
+  attr_accessor :tokens, :code
 
   KEYWORDS = %w(def class if true false nil)
   INDENT_SIZE = 2
