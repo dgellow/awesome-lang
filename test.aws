@@ -1,0 +1,6 @@
+class Animal:
+  def eat:
+    "Crunch crunch"
+
+  def yell:
+    "BRUUUUUUUUUUUU"
