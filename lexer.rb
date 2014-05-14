@@ -9,10 +9,6 @@ class Lexer
   KEYWORDS = %w(def class if true false nil)
   INDENT_SIZE = 2
 
-  def initialize
-    @tokens = []
-  end
-
   def tokenize(code)
     @code = code.chomp
     @tokens = []
