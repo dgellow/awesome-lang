@@ -7,6 +7,7 @@ class Lexer
   attr_accessor :tokens
 
   KEYWORDS = %w(def class if true false nil)
+  INDENT_SIZE = 2
 
   def initialize
     @tokens = []
@@ -54,7 +55,10 @@ class Lexer
         i += 2
       elsif n(indent_regexp) && @matcher.size > 1
         indent = @matcher[2]
-        if indent.size <= current_indent
+        if (indent.size % INDENT_SIZE) != 0
+          fail error i, "Bad indent size, got #{indent.size} indents, \
+expected a multiple of #{INDENT_SIZE}"
+        elsif indent.size <= current_indent
           fail error i, "Bad indent level, got #{indent.size} indents, \
 expected less than #{current_indent}"
         end
