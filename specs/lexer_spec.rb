@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+$:.unshift File.expand_path(File.dirname(__FILE__) + '/helpers')
 
 require 'minitest/autorun'
 require 'lexer'
+require 'lexer_helper'
 
 class TestLexer < Minitest::Unit::TestCase
   def setup
@@ -95,5 +97,32 @@ class TestLexer < Minitest::Unit::TestCase
   def test_string_with_escaped_quotes
     tokens = @lexer.tokenize '   "a \" string"   '
     assert_equal tokens, [[:STRING, "a \" string"]]
+  end
+
+
+  # Indents
+  def test_indent_simple_case
+    tokens = @lexer.tokenize LexerHelper::Code_class_with_method
+    assert_equal tokens, LexerHelper::Tokens_class_with_method
+  end
+
+  def test_indent_difficult_case
+    skip 'to be defined'
+  end
+
+  def test_dedent_simple_case
+    skip
+  end
+
+
+  # Operators
+  def test_operator_parentheses
+    tokens = @lexer.tokenize '   ( variable )  '
+    assert_equal tokens, [[:'(', '('], [:IDENTIFIER, 'variable'], [:')', ')']]
+  end
+
+  def test_operator_maths
+    tokens = @lexer.tokenize '+ - / * %'
+    assert_equal tokens, [[:+, '+'], [:-, '-'], [:'/', '/'], [:*, '*'], [:%, '%']]
   end
 end
