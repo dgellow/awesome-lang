@@ -116,13 +116,25 @@ class TestLexer < Minitest::Unit::TestCase
 
 
   # Operators
-  def test_operator_parentheses
-    tokens = @lexer.tokenize '   ( variable )  '
-    assert_equal tokens, [[:'(', '('], [:IDENTIFIER, 'variable'], [:')', ')']]
+  def test_operator_braces
+    tokens = @lexer.tokenize '   ( [ { variable } ] )  '
+    assert_equal tokens, LexerHelper::Tokens_operator_braces
   end
 
   def test_operator_maths
-    tokens = @lexer.tokenize '+ - / * %'
+    tokens = @lexer.tokenize '   + - / * %   '
     assert_equal tokens, [[:+, '+'], [:-, '-'], [:'/', '/'], [:*, '*'], [:%, '%']]
+  end
+
+  def test_operator_conditionals
+    tokens = @lexer.tokenize '   || && == != <= >=   '
+    assert_equal tokens, LexerHelper::Tokens_operator_conditionals
+  end
+
+
+  # Misc
+  def test_newlines
+    tokens = @lexer.tokenize ' \n \n  \n  \n   \n   \n'
+    assert_equal tokens, [:NEWLINE, "\n"]
   end
 end

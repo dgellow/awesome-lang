@@ -16,4 +16,22 @@ class Animal:
     [:DEDENT, 2],
     [:DEDENT, 0]]
 
+  Tokens_operator_braces = [
+    [:"(", "("],
+    [:"[", "["],
+    [:"{", "{"],
+    [:IDENTIFIER, "variable"],
+    [:"}", "}"],
+    [:"]", "]"],
+    [:")", ")"]
+  ]
+
+  Tokens_operator_conditionals = [
+    [:"||", "||"],
+    [:"&&", "&&"],
+    [:==, "=="],
+    [:!=, "!="],
+    [:<=, "<="],
+    [:>=, ">="]
+  ]
 end
