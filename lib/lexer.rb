@@ -24,7 +24,7 @@ class Lexer
     identifier_regexp = /\A([a-z]\w*)/
     constant_regexp = /\A([A-Z]\w*)/
     # \d+: digit character ([0-9]), 1 time or more
-    number_regexp = /\A(\d+)/
+    number_regexp = /\A(\d+\.?\d*)/
     # ^: negation
     string_regexp = /\A"([^"]*)"/
     # option m: multi-line mode
