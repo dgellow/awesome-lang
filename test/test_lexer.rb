@@ -137,4 +137,9 @@ class TestLexer < Minitest::Unit::TestCase
     tokens = @lexer.tokenize ' \n \n  \n  \n   \n   \n'
     assert_equal tokens, [:NEWLINE, "\n"]
   end
+
+  def test_imbricate_statements
+    tokens = @lexer.tokenize LexerHelper::Code_imbricate_statements
+    assert_equal tokens, LexerHelper::Tokens_imbricate_statements
+  end
 end
