@@ -49,7 +49,8 @@ class Animal:
     [:INDENT, 4],
     [:STRING, "*crunch* *crunch*"],
     [:DEDENT, 2],
-    [:DEDENT, 0]]
+    [:DEDENT, 0]
+  ]
 
   Tokens_operator_braces = [
     [:"(", "("],
