@@ -1,4 +1,5 @@
 guard :minitest, include: ['lib'] do
+  logger level: :warn
 
   # with Minitest::Unit
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
